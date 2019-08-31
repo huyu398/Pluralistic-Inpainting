@@ -76,6 +76,9 @@ class CreateDataset(data.Dataset):
         if mask_type == 4:
             return task.corner_mask(img)
 
+        if mask_type == 5:
+            return task.edge_mask(img)
+
 
 def dataloader(opt):
     datasets = CreateDataset(opt)
