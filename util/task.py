@@ -40,6 +40,17 @@ def center_mask(img):
 
     return mask
 
+def center_large_mask(img):
+    mask = torch.ones_like(img)
+    size = img.size()
+    x = int(size[1] / 8)
+    y = int(size[2] / 8)
+    range_x = int(size[1] * 7 / 8)
+    range_y = int(size[2] * 7 / 8)
+    mask[:, x:range_x, y:range_y] = 0
+
+    return mask
+
 def corner_mask(img):
     mask = torch.ones_like(img)
     size = img.size()
