@@ -95,6 +95,16 @@ def between_center_and_corner_mask(img):
 
     return mask
 
+def between_center_and_corner_small_mask(img):
+    mask = torch.ones_like(img)
+    size = img.size()
+    x = int(size[1] / 8)
+    y = int(size[2] / 8)
+    range_x = int(size[1] * 3 / 8)
+    range_y = int(size[2] * 3 / 8)
+    mask[:, x:range_x, y:range_y] = 0
+
+    return mask
 
 def random_irregular_mask(img):
     """Generates a random irregular mask with lines, circles and elipses"""
