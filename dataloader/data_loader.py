@@ -73,6 +73,9 @@ class CreateDataset(data.Dataset):
             mask_pil.close()
             return mask
 
+        if mask_type == 4:
+            return task.corner_mask(img)
+
 
 def dataloader(opt):
     datasets = CreateDataset(opt)
