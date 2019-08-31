@@ -85,6 +85,9 @@ class CreateDataset(data.Dataset):
         if mask_type == 7:
             return task.center_large_mask(img)
 
+        if mask_type == 8:
+            return task.center_small_mask(img)
+
 def dataloader(opt):
     datasets = CreateDataset(opt)
     dataset = data.DataLoader(datasets, batch_size=opt.batchSize, shuffle=not opt.no_shuffle, num_workers=int(opt.nThreads))
