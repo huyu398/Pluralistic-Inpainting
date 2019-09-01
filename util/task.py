@@ -73,6 +73,17 @@ def corner_mask(img):
 
     return mask
 
+def corner_small_mask(img):
+    mask = torch.ones_like(img)
+    size = img.size()
+    x = 0
+    y = 0
+    range_x = int(size[1] / 4)
+    range_y = int(size[2] / 4)
+    mask[:, x:range_x, y:range_y] = 0
+
+    return mask
+
 def edge_mask(img):
     mask = torch.ones_like(img)
     size = img.size()

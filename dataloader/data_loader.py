@@ -75,6 +75,8 @@ class CreateDataset(data.Dataset):
 
         if mask_type == 4:
             return task.corner_mask(img)
+        elif mask_type == 4.1:
+            return task.corner_small_mask(img)
 
         if mask_type == 5:
             return task.edge_mask(img)
