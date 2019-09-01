@@ -44,6 +44,10 @@ class CreateDataset(data.Dataset):
         # center mask
         if mask_type == 0:
             return task.center_mask(img)
+        elif mask_type == 0.1:
+            return task.center_small_mask(img)
+        elif mask_type == 0.2:
+            return task.center_large_mask(img)
 
         # random regular mask
         if mask_type == 1:
@@ -87,12 +91,6 @@ class CreateDataset(data.Dataset):
             return task.between_center_and_corner_mask(img)
         elif mask_type == 6.1:
             return task.between_center_and_corner_small_mask(img)
-
-        if mask_type == 7:
-            return task.center_large_mask(img)
-
-        if mask_type == 8:
-            return task.center_small_mask(img)
 
 def dataloader(opt):
     datasets = CreateDataset(opt)
