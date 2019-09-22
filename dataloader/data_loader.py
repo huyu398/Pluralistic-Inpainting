@@ -43,10 +43,7 @@ class CreateDataset(data.Dataset):
 
         if mask_type == -1:
             mask_pil = Image.open(self.mask_paths[index]).convert('RGB')
-            mask_transform = transforms.Compose([transforms.CenterCrop([size, size]),
-                                                 transforms.Resize(self.opt.fineSize),
-                                                 transforms.ToTensor()
-                                                 ])
+            mask_transform = transforms.Compose([transforms.ToTensor()])
             mask = (mask_transform(mask_pil) == 0).float()
             mask_pil.close()
             return mask
