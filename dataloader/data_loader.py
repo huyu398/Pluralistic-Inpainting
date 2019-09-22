@@ -41,6 +41,11 @@ class CreateDataset(data.Dataset):
         mask_type_index = random.randint(0, len(self.opt.mask_type) - 1)
         mask_type = self.opt.mask_type[mask_type_index]
 
+        if mask_type == -1:
+            mask_pil = Image.open(self.mask_paths[index]).convert('RGB')
+            mask = (mask_pil == 0).float()
+            return mask
+
         # center mask
         if mask_type == 0:
             return task.center_mask(img)
